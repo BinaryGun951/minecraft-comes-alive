@@ -79,7 +79,12 @@ public class SpeechManager {
                         String content = Language.getInstance().get(phrase);
                         int tone = Math.min(TOTAL_VOICES - 1, (int) Math.floor(gene * TOTAL_VOICES));
                         String voice = gender + "_" + tone;
-                        OnlineSpeechManager.INSTANCE.play(LanguageMap.LANGUAGE_MAP.get(gameLang), voice, pitch, content, villager);
+                        if(!Config.getInstance().enableElvenlabsTTS) { //check if ElevenlabsTTS is false use normal model
+                            OnlineSpeechManager.INSTANCE.play(LanguageMap.LANGUAGE_MAP.get(gameLang), voice, pitch, content, villager);
+                        }
+                        else { //use ElevenlabsTTS insted
+                            ElevenlabsSpeechManager.INSTANCE.play(LanguageMap.LANGUAGE_MAP.get(gameLang), voice, pitch, content, villager);
+                        }
                     } else {
                         MutableText styled = (Text.translatable("command.tts_unsupported_language")).styled(s -> s
                                 .withColor(Formatting.RED)

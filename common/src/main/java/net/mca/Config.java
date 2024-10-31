@@ -121,6 +121,8 @@ public final class Config implements Serializable {
     // TTS
     public boolean enableOnlineTTS = false;
     public String villagerTTSServer = "http://api.rk.conczin.net/";
+    public boolean enableElvenlabsTTS = false;
+    public String elevenlabsPrivteAPIkey = "replace with your private Elevenlabs API Key";
 
     //village behavior
     public float guardSpawnFraction = 0.175f;
